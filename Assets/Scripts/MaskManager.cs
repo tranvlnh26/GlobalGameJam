@@ -77,7 +77,6 @@ public class MaskManager : MonoBehaviour
         // Reset collision logic
         Physics2D.IgnoreLayerCollision(_layerPlayer, _layerRed, type != MaskType.Red);
         Physics2D.IgnoreLayerCollision(_layerPlayer, _layerBlue, type != MaskType.Blue);
-        
         Debug.Log($"[Mask] Switched to: {type}");
     }
 }

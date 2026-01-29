@@ -2,37 +2,86 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 3f;
-    public float jumpForce = 14f;
+    [Header("Movement Settings")] 
+    [SerializeField] private float moveSpeed = 8f;
+    [SerializeField] private float jumpForce = 14f;
+    [SerializeField] private float jumpCutMultiplier = 0.4f;
 
-    Rigidbody2D rb;
-    bool grounded;
+    [Header("Detection Settings")] 
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundCheckRadius = 0.25f;
+    [SerializeField] private LayerMask baseGroundMask;
 
-    void Start()
+    [Header("Game Feel (Timers)")] 
+    [SerializeField] private float coyoteTime = 0.15f;
+    [SerializeField] private float jumpBufferTime = 0.15f;
+
+    private Rigidbody2D _rb;
+    private float _inputX;
+    private float _coyoteTimeCounter;
+    private float _jumpBufferCounter;
+    private bool _isGrounded;
+
+    void Start() => _rb = GetComponent<Rigidbody2D>();
+
+    void Update()
     {
-        rb = GetComponent<Rigidbody2D>();
+        _inputX = Input.GetAxisRaw("Horizontal");
+        
+        HandleGroundCheck();
+        HandleTimers();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _jumpBufferCounter = jumpBufferTime;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space) && _rb.linearVelocity.y > 0)
+        {
+            _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _rb.linearVelocity.y * jumpCutMultiplier);
+            _coyoteTimeCounter = 0f; // Prevent double jumps
+        }
+
+        // 3. Execute Jump
+        if (_jumpBufferCounter > 0f && _coyoteTimeCounter > 0f)
+        {
+            PerformJump();
+        }
     }
 
     void FixedUpdate()
     {
-        float x = Input.GetAxis("Horizontal");
-        rb.linearVelocity = new Vector2(x * speed, rb.linearVelocity.y);
+        _rb.linearVelocity = new Vector2(_inputX * moveSpeed, _rb.linearVelocity.y);
     }
 
-    void Update()
+    private void HandleGroundCheck()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && grounded)
+        LayerMask currentEffectiveLayer = baseGroundMask;
+
+        if (MaskManager.Instance != null && MaskManager.Instance.currentMask != MaskType.None)
         {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            grounded = false;
+            string layerName = MaskManager.Instance.currentMask.ToString() + "World";
+            int worldLayer = LayerMask.NameToLayer(layerName);
+            if (worldLayer != -1) currentEffectiveLayer |= (1 << worldLayer);
         }
+
+        _isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, currentEffectiveLayer);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void HandleTimers()
     {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            grounded = true;
-        }
+        _coyoteTimeCounter = _isGrounded ? coyoteTime : _coyoteTimeCounter - Time.deltaTime;
+        _jumpBufferCounter -= Time.deltaTime;
+    }
+
+    private void PerformJump()
+    {
+        var finalJumpForce = jumpForce;
+
+        _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, 0); // Clear velocity for consistent jump height
+        _rb.AddForce(Vector2.up * finalJumpForce, ForceMode2D.Impulse);
+
+        _jumpBufferCounter = 0f;
+        _coyoteTimeCounter = 0f;
     }
 }

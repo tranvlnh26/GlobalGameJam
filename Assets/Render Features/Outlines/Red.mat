@@ -48,13 +48,13 @@ Material:
     - _Fullscreen_SrcAlphaBlend: 1
     - _Fullscreen_SrcColorBlend: 5
     - _NormalThreshold: 0.4
-    - _OutlineScale: 1
+    - _OutlineScale: 0.5
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RobertsCrossMultiplier: 100
     - _SteepAngleMultiplier: 25
     - _SteepAngleThreshold: 0.2
     m_Colors:
-    - _OutlineColor: {r: 2, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 2.9960785, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

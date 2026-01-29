@@ -83,13 +83,13 @@ MonoBehaviour:
     BlitMaterial: {fileID: 2100000, guid: bdea475f97d0a0f4caf0a77a297e5eb1, type: 2}
     ClearDepth: 0
   MaterialSettings:
-    OutlineScale: 1
+    OutlineScale: 0.5
     RobertsCrossMultiplier: 100
     DepthThreshold: 10
     NormalThreshold: 0.4
     SteepAngleThreshold: 0.2
     SteepAngleMultiplier: 25
-    OutlineColor: {r: 2, g: 0, b: 0, a: 1}
+    OutlineColor: {r: 2.9960785, g: 0, b: 0, a: 1}
 --- !u!114 &2000153972515752687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbd6e526a1bb489a8df34cbfcfca6bfc, type: 3}
-  m_Name: OutlineRenderFeature
+  m_Name: Blue
   m_EditorClassIdentifier: Assembly-CSharp::Xenon.OutlineRenderFeature
   m_Active: 1
   FeatureSettings:
@@ -115,13 +115,13 @@ MonoBehaviour:
     BlitMaterial: {fileID: 2100000, guid: 7d880b8c6b7ce354981dcb9726351d70, type: 2}
     ClearDepth: 0
   MaterialSettings:
-    OutlineScale: 1
+    OutlineScale: 0.5
     RobertsCrossMultiplier: 100
     DepthThreshold: 10
     NormalThreshold: 0.4
     SteepAngleThreshold: 0.2
     SteepAngleMultiplier: 25
-    OutlineColor: {r: 0.077425, g: 0, b: 4, a: 1}
+    OutlineColor: {r: 0.05799285, g: 0, b: 2.9960787, a: 1}
 --- !u!114 &2645395127550069907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +153,7 @@ MonoBehaviour:
     NormalThreshold: 0.4
     SteepAngleThreshold: 0.2
     SteepAngleMultiplier: 25
-    OutlineColor: {r: 4, g: 4, b: 4, a: 1}
+    OutlineColor: {r: 2.0754716, g: 2.0754716, b: 2.0754716, a: 1}
 --- !u!114 &7833122117494664109
 MonoBehaviour:
   m_ObjectHideFlags: 0
