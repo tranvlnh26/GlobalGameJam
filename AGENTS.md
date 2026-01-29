@@ -2,7 +2,7 @@
 - Project name: GlobalGameJam
 - Unity version: Unity 6000.3.3f1
 - Active game object:
-  - Name: Player
-  - Tag: Untagged
-  - Layer: Default
+  - Name: Default (1)
+  - Tag: Ground
+  - Layer: RedWorld
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

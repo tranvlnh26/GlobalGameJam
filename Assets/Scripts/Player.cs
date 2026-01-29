@@ -3,7 +3,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float speed = 3f;
-    public float jumpForce = 3f;
+    public float jumpForce = 14f;
 
     Rigidbody2D rb;
     bool grounded;
@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         float x = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(x * speed, rb.velocity.y);
+        rb.linearVelocity = new Vector2(x * speed, rb.linearVelocity.y);
     }
 
     void Update()
