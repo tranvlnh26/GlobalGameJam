@@ -12,3 +12,8 @@
 ├── Render Feattures/       # Share vẽ outline (không đụng vào)
 ```
 
+
+
+## Assets credits
+- Các assets sử dụng trong game đều được lấy từ các trang web cung cấp tài nguyên miễn phí như:
+  - [Free Cyberpunk Backgrounds Pixel Art](https://free-game-assets.itch.io/free-scrolling-city-backgrounds-pixel-art)
