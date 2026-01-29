@@ -5,12 +5,12 @@
 ```
 ├── Materials/              # Chứa các material của game
 ├── Prefabs/                # Chứa các prefab của game
+├── Render Feattures/       # Share vẽ outline (không đụng vào)
 ├── Scenes/                 # Chứa các scene của game
 │  ├── MainScene.unity      # Scene chính khi vừa mở game
 ├── Scripts/                # Chứa các script của game
 │  ├── Singleton.cs         # Script quản lý singleton
 ├── Settings/               # Chứa các setting chung của project
-├── Render Feattures/       # Share vẽ outline (không đụng vào)
 ```
 
 ## Cách sử dụng
