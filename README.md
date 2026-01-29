@@ -30,6 +30,5 @@
 
 ## Assets credits
 
-- Các assets sử dụng trong game đều được lấy từ các trang web cung cấp tài nguyên miễn phí như:
-    - [Free Cyberpunk Backgrounds Pixel Art](https://free-game-assets.itch.io/free-scrolling-city-backgrounds-pixel-art)
-    - [Free Pixel Game UI for Cyberpunk](https://free-game-assets.itch.io/free-gui-for-cyberpunk-pixel-art)
+- Các assets sử dụng trong game đều được lấy từ các trang web cung cấp tài nguyên miễn phí hoặc do AI tạo ra:
+    - `Sprites/Background.png`: ChatGPT
