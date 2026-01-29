@@ -1,19 +1,38 @@
 using UnityEngine;
-using UnityEngine.XR;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 3;
+    public float speed = 3f;
+    public float jumpForce = 3f;
+
     Rigidbody2D rb;
+    bool grounded;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-   
-    void Update()
+    void FixedUpdate()
     {
         float x = Input.GetAxis("Horizontal");
-        rb.linearVelocity = new Vector2(x * speed, rb.linearVelocity.y);
+        rb.velocity = new Vector2(x * speed, rb.velocity.y);
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && grounded)
+        {
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            grounded = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            grounded = true;
+        }
     }
 }

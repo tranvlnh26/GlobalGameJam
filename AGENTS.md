@@ -2,7 +2,7 @@
 - Project name: GlobalGameJam
 - Unity version: Unity 6000.3.3f1
 - Active game object:
-  - Name: Triangle
+  - Name: Player
   - Tag: Untagged
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
