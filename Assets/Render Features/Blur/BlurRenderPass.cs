@@ -7,40 +7,40 @@ namespace RenderFeatures.Blur
 {
     public class BlurRenderPass : ScriptableRenderPass
     {
-        private readonly BlurSettings m_DefaultSettings;
-        private readonly Material m_Material;
-        private RenderTextureDescriptor m_BlurTextureDescriptor;
+        private readonly BlurSettings _mDefaultSettings;
+        private readonly Material _mMaterial;
+        private RenderTextureDescriptor _mBlurTextureDescriptor;
 
-        private RTHandle m_BlurTextureHandle;
+        private RTHandle _mBlurTextureHandle;
 
         private static readonly int HorizontalBlurId = Shader.PropertyToID("_HorizontalBlur");
         private static readonly int VerticalBlurId = Shader.PropertyToID("_VerticalBlur");
 
         public BlurRenderPass(Material material, BlurSettings defaultSettings)
         {
-            m_DefaultSettings = defaultSettings;
-            m_Material = material;
+            _mDefaultSettings = defaultSettings;
+            _mMaterial = material;
 
-            m_BlurTextureDescriptor =
+            _mBlurTextureDescriptor =
                 new RenderTextureDescriptor(Screen.width, Screen.height, RenderTextureFormat.Default, 0);
         }
 
         private void UpdateBlurSettings()
         {
-            if (m_Material == null) return;
+            if (_mMaterial == null) return;
 
-            m_Material.SetFloat(HorizontalBlurId, m_DefaultSettings.HorizontalBlur);
-            m_Material.SetFloat(VerticalBlurId, m_DefaultSettings.VerticalBlur);
+            _mMaterial.SetFloat(HorizontalBlurId, _mDefaultSettings.HorizontalBlur);
+            _mMaterial.SetFloat(VerticalBlurId, _mDefaultSettings.VerticalBlur);
         }
 
         public override void Configure(CommandBuffer cmd, RenderTextureDescriptor cameraTextureDescriptor)
         {
             // Set the blur texture size to the same as the camera target size.
-            m_BlurTextureDescriptor.width = cameraTextureDescriptor.width;
-            m_BlurTextureDescriptor.height = cameraTextureDescriptor.height;
+            _mBlurTextureDescriptor.width = cameraTextureDescriptor.width;
+            _mBlurTextureDescriptor.height = cameraTextureDescriptor.height;
 
             // Check if the descriptor has changed, and reallocate the RTHandle if necessary.
-            RenderingUtils.ReAllocateIfNeeded(ref m_BlurTextureHandle, m_BlurTextureDescriptor, name: "_BlurTexture");
+            RenderingUtils.ReAllocateHandleIfNeeded(ref _mBlurTextureHandle, _mBlurTextureDescriptor, name: "_BlurTexture");
         }
 
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
@@ -57,9 +57,9 @@ namespace RenderFeatures.Blur
                 cmd.Clear();
 
                 // Blit from the camera target to the temporary render texture using the first pass.
-                Blit(cmd, cameraTargetHandle, m_BlurTextureHandle, m_Material);
+                Blit(cmd, cameraTargetHandle, _mBlurTextureHandle, _mMaterial);
                 // Blit from the temporary render texture to the camera target using the second pass.
-                Blit(cmd, m_BlurTextureHandle, cameraTargetHandle, m_Material, 1);
+                Blit(cmd, _mBlurTextureHandle, cameraTargetHandle, _mMaterial, 1);
             }
 
             context.ExecuteCommandBuffer(cmd);
@@ -70,14 +70,14 @@ namespace RenderFeatures.Blur
         {
 #if UNITY_EDITOR
             if (EditorApplication.isPlaying)
-                Object.Destroy(m_Material);
+                Object.Destroy(_mMaterial);
             else
-                Object.DestroyImmediate(m_Material);
+                Object.DestroyImmediate(_mMaterial);
 #else
             Object.Destroy(m_Material);
 #endif
 
-            m_BlurTextureHandle?.Release();
+            _mBlurTextureHandle?.Release();
         }
     }
 }

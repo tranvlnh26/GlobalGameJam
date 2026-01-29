@@ -8,67 +8,67 @@ namespace RenderFeatures
 {
     public class DesaturationRenderPass : ScriptableRenderPass
     {
-        private readonly DesaturationSettings m_Settings;
-        private readonly Material m_FullscreenMaterial;
-        private readonly Material m_OverrideMaterial;
+        private readonly DesaturationSettings _mSettings;
+        private readonly Material _mFullscreenMaterial;
+        private readonly Material _mOverrideMaterial;
 
-        private readonly FilteringSettings m_FilteringSettings;
-        private readonly List<ShaderTagId> m_ShaderTagIds = new();
+        private readonly FilteringSettings _mFilteringSettings;
+        private readonly List<ShaderTagId> _mShaderTagIds = new();
 
-        private RendererList m_RendererList;
+        private RendererList _mRendererList;
 
         /// <summary>
         /// Used as a render target for drawing objects.
         /// </summary>
-        private RTHandle m_FilterTextureHandle;
+        private RTHandle _mFilterTextureHandle;
 
         /// <summary>
         /// Used for the fullscreen blit.
         /// </summary>
-        private RTHandle m_TemporaryColorTextureHandle;
+        private RTHandle _mTemporaryColorTextureHandle;
 
         private static readonly int SaturationId = Shader.PropertyToID("_Saturation");
 
         public DesaturationRenderPass(DesaturationSettings settings)
         {
-            m_Settings = settings;
-            m_FullscreenMaterial = new Material(settings.FullscreenShader);
+            _mSettings = settings;
+            _mFullscreenMaterial = new Material(settings.FullscreenShader);
 
             if (settings.OverrideShader != null)
-                m_OverrideMaterial = new Material(settings.OverrideShader);
+                _mOverrideMaterial = new Material(settings.OverrideShader);
 
             // Make sure we use layers in our filtering settings.
             var renderLayer = (uint)1 << settings.RenderLayerMask;
-            m_FilteringSettings = new FilteringSettings(RenderQueueRange.opaque, settings.LayerMask, renderLayer);
+            _mFilteringSettings = new FilteringSettings(RenderQueueRange.opaque, settings.LayerMask, renderLayer);
 
             // Use default shader tags.
-            m_ShaderTagIds.Add(new ShaderTagId("SRPDefaultUnlit"));
-            m_ShaderTagIds.Add(new ShaderTagId("UniversalForward"));
-            m_ShaderTagIds.Add(new ShaderTagId("UniversalForwardOnly"));
+            _mShaderTagIds.Add(new ShaderTagId("SRPDefaultUnlit"));
+            _mShaderTagIds.Add(new ShaderTagId("UniversalForward"));
+            _mShaderTagIds.Add(new ShaderTagId("UniversalForwardOnly"));
         }
 
         private void UpdateSettings()
         {
-            if (m_FullscreenMaterial == null) return;
+            if (_mFullscreenMaterial == null) return;
 
-            m_FullscreenMaterial.SetFloat(SaturationId, m_Settings.Saturation);
+            _mFullscreenMaterial.SetFloat(SaturationId, _mSettings.Saturation);
         }
 
         public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData)
         {
             var cameraTextureDescriptor = renderingData.cameraData.cameraTargetDescriptor;
-            cameraTextureDescriptor.colorFormat = m_Settings.RenderTextureFormat;
+            cameraTextureDescriptor.colorFormat = _mSettings.RenderTextureFormat;
             cameraTextureDescriptor.depthBufferBits = (int)DepthBits.None;
 
-            RenderingUtils.ReAllocateIfNeeded(ref m_FilterTextureHandle, cameraTextureDescriptor,
+            RenderingUtils.ReAllocateHandleIfNeeded(ref _mFilterTextureHandle, cameraTextureDescriptor,
                 name: "_FilterTexture");
 
-            RenderingUtils.ReAllocateIfNeeded(ref m_TemporaryColorTextureHandle, cameraTextureDescriptor,
+            RenderingUtils.ReAllocateHandleIfNeeded(ref _mTemporaryColorTextureHandle, cameraTextureDescriptor,
                 name: "_TemporaryColor");
 
             var cameraDepthTextureHandle = renderingData.cameraData.renderer.cameraDepthTargetHandle;
 
-            ConfigureTarget(m_FilterTextureHandle, cameraDepthTextureHandle);
+            ConfigureTarget(_mFilterTextureHandle, cameraDepthTextureHandle);
             ConfigureClear(ClearFlag.Color, new Color(0, 0, 0, 0));
         }
 
@@ -76,18 +76,18 @@ namespace RenderFeatures
         {
             var sortingCriteria = renderingData.cameraData.defaultOpaqueSortFlags;
 
-            var drawingSettings = CreateDrawingSettings(m_ShaderTagIds, ref renderingData, sortingCriteria);
-            drawingSettings.overrideMaterial = m_OverrideMaterial;
+            var drawingSettings = CreateDrawingSettings(_mShaderTagIds, ref renderingData, sortingCriteria);
+            drawingSettings.overrideMaterial = _mOverrideMaterial;
             drawingSettings.overrideMaterialPassIndex = 0;
 
-            var param = new RendererListParams(renderingData.cullResults, drawingSettings, m_FilteringSettings);
-            m_RendererList = context.CreateRendererList(ref param);
+            var param = new RendererListParams(renderingData.cullResults, drawingSettings, _mFilteringSettings);
+            _mRendererList = context.CreateRendererList(ref param);
         }
 
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
         {
             // Make sure we have a valid material
-            if (m_FullscreenMaterial == null)
+            if (_mFullscreenMaterial == null)
                 return;
 
             var cmd = CommandBufferPool.Get();
@@ -102,21 +102,21 @@ namespace RenderFeatures
 
                 // Initialize and draw all renderers.
                 InitRendererLists(ref renderingData, context);
-                cmd.DrawRendererList(m_RendererList);
+                cmd.DrawRendererList(_mRendererList);
 
                 // Pass our filter texture to shaders as a global texture reference.
                 // Obtain this in a shader graph as a Texture2D with exposed un-ticked
                 // and reference _FilterTexture.
-                cmd.SetGlobalTexture(Shader.PropertyToID(m_FilterTextureHandle.name),
-                    m_FilterTextureHandle);
+                cmd.SetGlobalTexture(Shader.PropertyToID(_mFilterTextureHandle.name),
+                    _mFilterTextureHandle);
 
                 // For some reasons these rt are null for a frame when selecting in scene view.
-                if (cameraTargetHandle.rt != null && m_TemporaryColorTextureHandle.rt != null)
+                if (cameraTargetHandle.rt != null && _mTemporaryColorTextureHandle.rt != null)
                 {
-                    Blitter.BlitCameraTexture(cmd, cameraTargetHandle, m_TemporaryColorTextureHandle,
-                        m_FullscreenMaterial,
+                    Blitter.BlitCameraTexture(cmd, cameraTargetHandle, _mTemporaryColorTextureHandle,
+                        _mFullscreenMaterial,
                         0);
-                    Blitter.BlitCameraTexture(cmd, m_TemporaryColorTextureHandle, cameraTargetHandle);
+                    Blitter.BlitCameraTexture(cmd, _mTemporaryColorTextureHandle, cameraTargetHandle);
                 }
             }
 
@@ -133,21 +133,21 @@ namespace RenderFeatures
 #if UNITY_EDITOR
             if (EditorApplication.isPlaying)
             {
-                Object.Destroy(m_FullscreenMaterial);
-                Object.Destroy(m_OverrideMaterial);
+                Object.Destroy(_mFullscreenMaterial);
+                Object.Destroy(_mOverrideMaterial);
             }
             else
             {
-                Object.DestroyImmediate(m_FullscreenMaterial);
-                Object.DestroyImmediate(m_OverrideMaterial);
+                Object.DestroyImmediate(_mFullscreenMaterial);
+                Object.DestroyImmediate(_mOverrideMaterial);
             }
 #else
             Object.Destroy(m_FullscreenMaterial);
             Object.Destroy(m_OverrideMaterial);
 #endif
 
-            m_FilterTextureHandle?.Release();
-            m_TemporaryColorTextureHandle?.Release();
+            _mFilterTextureHandle?.Release();
+            _mTemporaryColorTextureHandle?.Release();
         }
     }
 }
