@@ -45,7 +45,7 @@ namespace RenderFeatures
     {
         public DesaturationSettings Settings;
 
-        private DesaturationRenderPass m_DesaturationRenderPass;
+        private DesaturationRenderPass _mDesaturationRenderPass;
 
         /// <summary>
         /// Initializes this feature's resources. This is called every time serialization happens.
@@ -55,7 +55,7 @@ namespace RenderFeatures
             // We can only proceed if we have a valid fullscreen pass, the override shader is optional.
             if (Settings.FullscreenShader == null) return;
 
-            m_DesaturationRenderPass = new DesaturationRenderPass(Settings)
+            _mDesaturationRenderPass = new DesaturationRenderPass(Settings)
             {
                 renderPassEvent = Settings.RenderPassEvent,
             };
@@ -70,7 +70,7 @@ namespace RenderFeatures
         {
             // Remove the feature from preview rendering.
             if (renderingData.cameraData.cameraType <= CameraType.SceneView)
-                renderer.EnqueuePass(m_DesaturationRenderPass);
+                renderer.EnqueuePass(_mDesaturationRenderPass);
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace RenderFeatures
         protected override void Dispose(bool disposing)
         {
             // Make sure we dispose all used resources from the pass.
-            m_DesaturationRenderPass.Dispose();
+            _mDesaturationRenderPass.Dispose();
         }
     }
 }

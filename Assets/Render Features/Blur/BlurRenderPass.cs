@@ -74,7 +74,7 @@ namespace RenderFeatures.Blur
             else
                 Object.DestroyImmediate(_mMaterial);
 #else
-            Object.Destroy(m_Material);
+            Object.Destroy(_mMaterial);
 #endif
 
             _mBlurTextureHandle?.Release();

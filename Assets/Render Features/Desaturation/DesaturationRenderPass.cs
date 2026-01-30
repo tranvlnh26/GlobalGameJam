@@ -142,8 +142,8 @@ namespace RenderFeatures
                 Object.DestroyImmediate(_mOverrideMaterial);
             }
 #else
-            Object.Destroy(m_FullscreenMaterial);
-            Object.Destroy(m_OverrideMaterial);
+            Object.Destroy(_mFullscreenMaterial);
+            Object.Destroy(_mOverrideMaterial);
 #endif
 
             _mFilterTextureHandle?.Release();
