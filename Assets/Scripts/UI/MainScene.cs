@@ -18,6 +18,7 @@ public class MainScene : MonoBehaviour
 
     [Header("Back Buttons")]
     [SerializeField] private Button settingsBackButton;
+    [SerializeField] private Button settingsOverlay; // Overlay để đóng khi bấm bên ngoài
 
     [Header("Settings")]
     [SerializeField] private Slider musicVolumeSlider;
@@ -53,6 +54,9 @@ public class MainScene : MonoBehaviour
 
         if (settingsBackButton != null)
             settingsBackButton.onClick.AddListener(OnBackToMainMenu);
+
+        if (settingsOverlay != null)
+            settingsOverlay.onClick.AddListener(OnBackToMainMenu);
 
         if (musicVolumeSlider != null)
             musicVolumeSlider.onValueChanged.AddListener(OnMusicVolumeChanged);
@@ -111,14 +115,12 @@ public class MainScene : MonoBehaviour
 
     private void OnMusicVolumeChanged(float value)
     {
-        PlayerPrefs.SetFloat("MusicVolume", value);
-        PlayerPrefs.Save();
+        AudioManager.Instance?.SetMusicVolume(value);
     }
 
     private void OnSFXVolumeChanged(float value)
     {
-        PlayerPrefs.SetFloat("SFXVolume", value);
-        PlayerPrefs.Save();
+        AudioManager.Instance?.SetSFXVolume(value);
     }
 
     private void OnFullscreenToggled(bool isFullscreen)
@@ -152,5 +154,6 @@ public class MainScene : MonoBehaviour
         if (settingsButton != null) settingsButton.onClick.RemoveAllListeners();
         if (quitButton != null) quitButton.onClick.RemoveAllListeners();
         if (settingsBackButton != null) settingsBackButton.onClick.RemoveAllListeners();
+        if (settingsOverlay != null) settingsOverlay.onClick.RemoveAllListeners();
     }
 }
