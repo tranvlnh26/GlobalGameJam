@@ -3,7 +3,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Movement Settings")]
-    [SerializeField] public static float moveSpeed = 4f;
+    [SerializeField] public static float moveSpeed = 6f;
     [SerializeField] private float jumpForce = 14f;
     [SerializeField] private float jumpCutMultiplier = 0.4f;
 
@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     private float _coyoteTimeCounter;
     private float _jumpBufferCounter;
     private bool _isGrounded;
+    private bool _isFacingRight = true;
 
     void Start()
     {
@@ -74,6 +75,8 @@ public class Player : MonoBehaviour
             ),
             _rb.linearVelocity.y
         );
+        
+        Flip();
     }
 
     private void HandleGroundCheck()
@@ -120,4 +123,15 @@ public class Player : MonoBehaviour
             MaskManager.Instance.ApplyMask(MaskType.Red);
         }
     }
+    private void Flip()
+    {
+        if ((!_isFacingRight || !(_inputX < 0f)) && (_isFacingRight || !(_inputX > 0f)))
+            return;
+
+        _isFacingRight = !_isFacingRight;
+        var localScale = transform.localScale;
+        localScale.x *= -1f;
+        transform.localScale = localScale;
+    }
+    
 }
