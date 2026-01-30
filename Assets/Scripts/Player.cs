@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
         {
             PerformJump();
         }
+        maskchange();
     }
 
     void FixedUpdate()
@@ -107,5 +108,16 @@ public class Player : MonoBehaviour
 
         _jumpBufferCounter = 0f;
         _coyoteTimeCounter = 0f;
+    }
+    private void maskchange()
+    {
+        if (Input.GetKey(KeyCode.Q) && MaskManager.Instance.currentMask != MaskType.Blue)
+        {
+            MaskManager.Instance.ApplyMask(MaskType.Blue);
+        }
+        else if (Input.GetKey(KeyCode.E) && MaskManager.Instance.currentMask != MaskType.Red)
+        {
+            MaskManager.Instance.ApplyMask(MaskType.Red);
+        }
     }
 }
