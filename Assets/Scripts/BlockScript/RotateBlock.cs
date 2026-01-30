@@ -1,31 +1,58 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
 public class RotateBlock : MonoBehaviour
 {
-    public Transform LevelBlock;
-    public float angle = 90;
+    public Transform levelBlock;
+    public float angle = -90f;
     public Vector3 rotationAxis = Vector3.forward;
     public float duration = 0.5f;
+    public KeyCode rotateKey = KeyCode.R;
+
+    bool canInteract;
+    bool rotating;
     bool rotated;
-    private void OnTriggerEnter2D(Collider2D other)
+
+    void Update()
+    {
+        if (!canInteract) return;
+        if (rotating || rotated) return;
+
+        if (Input.GetKeyDown(rotateKey))
+        {
+            StartCoroutine(RotateLevel());
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-        if ((rotated)) return;
-        StartCoroutine(RotateLevel());
+        canInteract = true;
     }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (!other.CompareTag("Player")) return;
+        canInteract = false;
+    }
+
     IEnumerator RotateLevel()
     {
+        rotating = true;
         rotated = true;
-        Quaternion start = LevelBlock.rotation;
-        Quaternion end = LevelBlock.rotation * Quaternion.Euler(rotationAxis * angle);
-        float time = 0f;
-        while (time < duration)
+
+        Quaternion start = levelBlock.rotation;
+        Quaternion end = start * Quaternion.AngleAxis(angle, rotationAxis);
+
+        float t = 0f;
+        while (t < 1f)
         {
-            LevelBlock.rotation = Quaternion.Slerp(start, end, time / duration);
-            time += Time.deltaTime;
+            t += Time.deltaTime / duration;
+            levelBlock.rotation = Quaternion.Slerp(start, end, t);
             yield return null;
         }
-        LevelBlock.rotation = end;
+
+        levelBlock.rotation = end;
+        rotating = false;
     }
 }

@@ -2,7 +2,7 @@
 - Project name: GlobalGameJam
 - Unity version: Unity 6000.3.3f1
 - Active game object:
-  - Name: RB2
+  - Name: RB3
   - Tag: Untagged
-  - Layer: BaseWorld
+  - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
