@@ -31,4 +31,5 @@
 ## Assets credits
 
 - Các assets sử dụng trong game đều được lấy từ các trang web cung cấp tài nguyên miễn phí hoặc do AI tạo ra:
-    - `Sprites/Background.png`: ChatGPT
+    - [Background](./Assets/Sprites/Background.png): `ChatGPT`
+    - [Spring](./Assets/Sprites/spring_using_blender.glb): [`Sketchfab`](https://sketchfab.com/3d-models/spring-using-blender-ffc2cc4575464dd5a9d8b813bd227023)

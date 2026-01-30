@@ -471,7 +471,7 @@ Transform:
   m_GameObject: {fileID: 757920786}
   serializedVersion: 2
   m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: 0, y: 6.8822846, z: -14.488888}
+  m_LocalPosition: {x: -5.91, y: 7.762285, z: -14.488889}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -716,7 +716,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 173374715}
+    TrackingTarget: {fileID: 1510906262}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -748,7 +748,7 @@ Transform:
   m_GameObject: {fileID: 1090521180}
   serializedVersion: 2
   m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: 0, y: 6.8822846, z: -14.488888}
+  m_LocalPosition: {x: -5.91, y: 7.762285, z: -14.488889}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -981,6 +981,10 @@ PrefabInstance:
     - target: {fileID: 1056215851686771634, guid: 20fce22d8d6d64048abd58fc5bc6bca8, type: 3}
       propertyPath: cubeDownOffset
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2519245978943944526, guid: 20fce22d8d6d64048abd58fc5bc6bca8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8278161393411235948, guid: 20fce22d8d6d64048abd58fc5bc6bca8, type: 3}
       propertyPath: m_LocalPosition.x
