@@ -77,7 +77,7 @@ public class SpringBlock : MonoBehaviour
                 if (spring) spring.transform.localScale = Vector3.Lerp(startScale, endScale, t);
                 if (cube) cube.transform.localPosition = Vector3.Lerp(startPos, endPos, t);
                 
-                await Task.Yield(); // Tương đương yield return null, chờ đến frame tiếp theo
+                await Task.Yield();
             }
         }
     }
