@@ -1,14 +1,20 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SmoothBlock : MonoBehaviour
 {
+    public float slideSpeed = 9f;
 
-    private void OnTriggerStay2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-        else
-        {
-            Player.moveSpeed = 10;
-        }
+        Player.onSmoothBlock = true;
+        Player.moveSpeed = slideSpeed;
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (!other.CompareTag("Player")) return;
+        Player.onSmoothBlock = false;
+        Player.moveSpeed = 4f;
     }
 }
