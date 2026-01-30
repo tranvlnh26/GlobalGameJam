@@ -22,17 +22,17 @@ namespace RenderFeatures.Blur
         [SerializeField]
         private Shader Shader;
 
-        private Material m_Material;
+        private Material _mMaterial;
 
-        private BlurRenderPass m_BlurRenderPass;
+        private BlurRenderPass _mBlurRenderPass;
 
         public override void Create()
         {
             if (Shader == null)
                 return;
 
-            m_Material = new Material(Shader);
-            m_BlurRenderPass = new BlurRenderPass(m_Material, BlurSettings)
+            _mMaterial = new Material(Shader);
+            _mBlurRenderPass = new BlurRenderPass(_mMaterial, BlurSettings)
             {
                 renderPassEvent = RenderPassEvent.AfterRenderingSkybox
             };
@@ -41,23 +41,23 @@ namespace RenderFeatures.Blur
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
         {
             if (renderingData.cameraData.cameraType == CameraType.Game)
-                renderer.EnqueuePass(m_BlurRenderPass);
+                renderer.EnqueuePass(_mBlurRenderPass);
         }
 
         protected override void Dispose(bool disposing)
         {
-            m_BlurRenderPass.Dispose();
+            _mBlurRenderPass.Dispose();
 
-            if (m_Material == null)
+            if (_mMaterial == null)
                 return;
 
 #if UNITY_EDITOR
             if (Application.isPlaying)
-                Destroy(m_Material);
+                Destroy(_mMaterial);
             else
-                DestroyImmediate(m_Material);
+                DestroyImmediate(_mMaterial);
 #else
-            Destroy(m_Material);
+            Destroy(_mMaterial);
 #endif
         }
     }
