@@ -6,7 +6,7 @@ public class RotateBlock : MonoBehaviour
     public Transform levelBlock;
     public float angle = -90f;
     public Vector3 rotationAxis = Vector3.forward;
-    public float duration = 0.5f;
+    public float duration = 2f;
     public KeyCode rotateKey = KeyCode.R;
 
     bool canInteract;
@@ -29,7 +29,6 @@ public class RotateBlock : MonoBehaviour
         if (!other.CompareTag("Player")) return;
         canInteract = true;
     }
-
     void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;

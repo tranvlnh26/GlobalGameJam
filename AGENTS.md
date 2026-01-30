@@ -2,7 +2,7 @@
 - Project name: GlobalGameJam
 - Unity version: Unity 6000.3.3f1
 - Active game object:
-  - Name: RB3
+  - Name: LevelBlock
   - Tag: Untagged
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
