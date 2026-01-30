@@ -4,5 +4,5 @@
 - Active game object:
   - Name: ElevatorNgangBlock
   - Tag: Untagged
-  - Layer: Default
+  - Layer: BaseWorld
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

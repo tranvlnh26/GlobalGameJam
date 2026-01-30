@@ -121,7 +121,7 @@ MonoBehaviour:
     NormalThreshold: 0.4
     SteepAngleThreshold: 0.2
     SteepAngleMultiplier: 25
-    OutlineColor: {r: 0.05799285, g: 0, b: 2.9960787, a: 1}
+    OutlineColor: {r: 0.38662115, g: 0.33774295, b: 2.6716983, a: 1}
 --- !u!114 &2645395127550069907
 MonoBehaviour:
   m_ObjectHideFlags: 0
