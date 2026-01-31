@@ -48,6 +48,7 @@ public class MaskManager : MonoBehaviour
         // 1. VISUAL: Camera Culling Mask
         switch (type)
         {
+
             case MaskType.None:
                 // Chỉ thấy Base, không thấy Red/Blue
                 mainCam.cullingMask = _maskDefault;
@@ -68,10 +69,10 @@ public class MaskManager : MonoBehaviour
         UpdatePhysicsCollision(type);
         onMaskChanged?.Invoke(type);
         // 3. TRIGGER VFX (Glitch)
-        // if (VFXManager.Instance != null) 
-        // {
-        //     VFXManager.Instance.TriggerGlitch();
-        // }
+        if (VFXManager.Instance != null) 
+        {
+            VFXManager.Instance.TriggerGlitch();
+        }
     }
 
     private void UpdatePhysicsCollision(MaskType type)

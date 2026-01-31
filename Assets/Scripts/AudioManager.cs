@@ -1,9 +1,8 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 /// <summary>
 /// Quản lý âm thanh cho game True Sight.
-/// Hỗ trợ phát nhạc nền và hiệu ứng âm thanh.
+/// Nhạc nền chạy xuyên suốt game và footstep SFX.
 /// </summary>
 public class AudioManager : Singleton<AudioManager>
 {
@@ -12,35 +11,36 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] private AudioSource sfxSource;
 
     [Header("Audio Clips")]
-    [SerializeField] private AudioClip menuMusic;
-    [SerializeField] private AudioClip gameMusic;
+    [SerializeField] private AudioClip backgroundMusic; // Nhạc nền xuyên suốt
 
     [Header("SFX Clips")]
-    [SerializeField] private AudioClip jumpSFX;
-    [SerializeField] private AudioClip deathSFX;
-    [SerializeField] private AudioClip maskRedSFX;      // "Gầm" trầm khi bật Mask Đỏ
-    [SerializeField] private AudioClip maskBlueSFX;     // "Ping" cao khi bật Mask Xanh
-    [SerializeField] private AudioClip maskOffSFX;      // Tắt mask
-    [SerializeField] private AudioClip footstepSFX;     // Tiếng bước chân kim loại
-    [SerializeField] private AudioClip portalSFX;       // Hoàn thành màn
+    [SerializeField] private AudioClip[] footstepSFX;
 
     [Header("Volume Settings")]
     [Range(0f, 1f)] private float musicVolume = 1f;
     [Range(0f, 1f)] private float sfxVolume = 1f;
 
-    private Dictionary<string, AudioClip> sfxDictionary;
+    private bool _musicStarted = false;
 
     protected override void Awake()
     {
         base.Awake();
         InitializeAudioSources();
-        InitializeSFXDictionary();
         LoadVolumeSettings();
+    }
+
+    private void Start()
+    {
+        // Phát nhạc nền ngay khi game bắt đầu (chỉ phát một lần)
+        if (!_musicStarted)
+        {
+            PlayBackgroundMusic();
+            _musicStarted = true;
+        }
     }
 
     private void InitializeAudioSources()
     {
-        // Tự động tạo AudioSource nếu chưa có
         if (musicSource == null)
         {
             musicSource = gameObject.AddComponent<AudioSource>();
@@ -56,20 +56,6 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
-    private void InitializeSFXDictionary()
-    {
-        sfxDictionary = new Dictionary<string, AudioClip>
-        {
-            { "Jump", jumpSFX },
-            { "Death", deathSFX },
-            { "MaskRed", maskRedSFX },
-            { "MaskBlue", maskBlueSFX },
-            { "MaskOff", maskOffSFX },
-            { "Footstep", footstepSFX },
-            { "Portal", portalSFX }
-        };
-    }
-
     private void LoadVolumeSettings()
     {
         musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
@@ -79,22 +65,16 @@ public class AudioManager : Singleton<AudioManager>
 
     #region Music Methods
 
-    public void PlayMusic(AudioClip clip)
+    /// <summary>
+    /// Phát nhạc nền xuyên suốt game
+    /// </summary>
+    public void PlayBackgroundMusic()
     {
-        if (clip == null || musicSource == null) return;
-
-        musicSource.clip = clip;
+        if (backgroundMusic == null || musicSource == null) return;
+        if (musicSource.isPlaying && musicSource.clip == backgroundMusic) return; // Đã đang phát
+        
+        musicSource.clip = backgroundMusic;
         musicSource.Play();
-    }
-
-    public void PlayMenuMusic()
-    {
-        PlayMusic(menuMusic);
-    }
-
-    public void PlayGameMusic()
-    {
-        PlayMusic(gameMusic);
     }
 
     public void StopMusic()
@@ -119,32 +99,12 @@ public class AudioManager : Singleton<AudioManager>
 
     #region SFX Methods
 
-    public void PlaySFX(AudioClip clip)
+    public void PlayFootstep()
     {
-        if (clip == null || sfxSource == null) return;
-        sfxSource.PlayOneShot(clip, sfxVolume);
+        if (footstepSFX == null || sfxSource == null) return;
+        var index = Random.Range(0, footstepSFX.Length);
+        sfxSource.PlayOneShot(footstepSFX[index], sfxVolume * 0.2f);
     }
-
-    public void PlaySFX(string sfxName)
-    {
-        if (sfxDictionary.TryGetValue(sfxName, out AudioClip clip))
-        {
-            PlaySFX(clip);
-        }
-        else
-        {
-            Debug.LogWarning($"AudioManager: SFX '{sfxName}' không tồn tại!");
-        }
-    }
-
-    // Convenience methods cho các SFX thường dùng
-    public void PlayJump() => PlaySFX(jumpSFX);
-    public void PlayDeath() => PlaySFX(deathSFX);
-    public void PlayMaskRed() => PlaySFX(maskRedSFX);
-    public void PlayMaskBlue() => PlaySFX(maskBlueSFX);
-    public void PlayMaskOff() => PlaySFX(maskOffSFX);
-    public void PlayFootstep() => PlaySFX(footstepSFX);
-    public void PlayPortal() => PlaySFX(portalSFX);
 
     #endregion
 

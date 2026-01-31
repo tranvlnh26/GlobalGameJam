@@ -25,6 +25,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float coyoteTime = 0.15f;
     [SerializeField] private float jumpBufferTime = 0.15f;
 
+    [Header("Footstep Settings")]
+    [SerializeField] private float footstepInterval = 0.43f; // Thời gian giữa các bước chân
+
     [Header("References")]
     [SerializeField] private GameplayUI gameplayUI;
 
@@ -33,8 +36,8 @@ public class Player : MonoBehaviour
     private float _coyoteTimeCounter;
     private float _jumpBufferCounter;
     private bool _isGrounded;
-    private bool _isFacingRight = true;
     private bool _isDead = false;
+    private float _footstepTimer = 0f;
 
     private Animator animation;
 
@@ -102,6 +105,31 @@ public class Player : MonoBehaviour
         animation.SetFloat("horizontal", _inputX);
         animation.SetFloat("speed", targetX);
         animation.SetBool("jump", _isGrounded);
+
+        // ===== FOOTSTEP SOUND =====
+        HandleFootstep();
+    }
+
+    private void HandleFootstep()
+    {
+        // Chỉ phát footstep khi: đang trên mặt đất VÀ đang di chuyển
+        bool isMoving = Mathf.Abs(_inputX) > 0.1f;
+        
+        if (_isGrounded && isMoving)
+        {
+            _footstepTimer -= Time.fixedDeltaTime;
+            
+            if (_footstepTimer <= 0f)
+            {
+                AudioManager.Instance?.PlayFootstep();
+                _footstepTimer = footstepInterval;
+            }
+        }
+        else
+        {
+            // Reset timer khi không di chuyển hoặc không trên mặt đất
+            _footstepTimer = 0f;
+        }
     }
 
     private void HandleGroundCheck()
@@ -136,8 +164,6 @@ public class Player : MonoBehaviour
 
         _jumpBufferCounter = 0f;
         _coyoteTimeCounter = 0f;
-        
-        
     }
 
     private void maskchange()
@@ -159,8 +185,6 @@ public class Player : MonoBehaviour
         _rb.linearVelocity = Vector2.zero;
         _rb.simulated = false;
 
-        // Phát SFX chết
-        AudioManager.Instance?.PlayDeath();
         animation.SetBool("death", true);
         // Hiển thị Lose screen
         await Awaitable.WaitForSecondsAsync(1.385f);

@@ -55,6 +55,6 @@ Material:
     - _SteepAngleMultiplier: 25
     - _SteepAngleThreshold: 0.2
     m_Colors:
-    - _OutlineColor: {r: 2.9960785, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 10.867925, g: 0.051263917, b: 0.051263917, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
