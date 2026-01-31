@@ -4,5 +4,5 @@
 - Active game object:
   - Name: Button
   - Tag: Untagged
-  - Layer: BaseWorld
+  - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

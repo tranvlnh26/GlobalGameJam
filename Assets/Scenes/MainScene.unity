@@ -303,8 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   musicSource: {fileID: 0}
   sfxSource: {fileID: 0}
-  menuMusic: {fileID: 0}
-  gameMusic: {fileID: 8300000, guid: b827629ad902b504097801f0e6ef842e, type: 3}
+  backgroundMusic: {fileID: 0}
   footstepSFX:
   - {fileID: 8300000, guid: 70b30fcfa2e921e4f977540971625441, type: 3}
   - {fileID: 8300000, guid: 952c046697988f54982741662239d329, type: 3}
@@ -682,7 +681,7 @@ MonoBehaviour:
   musicVolumeSlider: {fileID: 1268990760}
   sfxVolumeSlider: {fileID: 2038058122}
   fullscreenToggle: {fileID: 1973948549}
-  firstLevel: 3
+  firstLevel: 1
 --- !u!1 &942043544
 GameObject:
   m_ObjectHideFlags: 0
