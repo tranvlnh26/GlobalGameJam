@@ -33,7 +33,6 @@ public class Player : MonoBehaviour
     private float _coyoteTimeCounter;
     private float _jumpBufferCounter;
     private bool _isGrounded;
-    private bool _isFacingRight = true;
     private bool _isDead = false;
 
     private Animator animation;
