@@ -46,6 +46,28 @@ public class RotateBlock : MonoBehaviour
         rotating = true;
         rotated = true;
 
+        // === TẠM DỪNG PHYSICS CỦA PLAYER ===
+        GameObject playerObj = GameObject.FindWithTag("Player");
+        Rigidbody2D playerRb = null;
+
+        if (playerObj != null)
+        {
+            playerRb = playerObj.GetComponent<Rigidbody2D>();
+
+            if (playerRb != null)
+            {
+                // Freeze velocity và tắt physics simulation
+                playerRb.linearVelocity = Vector2.zero;
+                playerRb.angularVelocity = 0f;
+                playerRb.simulated = false;
+            }
+        }
+
+        // === LƯU VỊ TRÍ BAN ĐẦU CỦA PLAYER SO VỚI PIVOT ===
+        Vector3 pivot = levelBlock.position;
+        Vector3 playerStartOffset = playerObj != null ? playerObj.transform.position - pivot : Vector3.zero;
+
+        // === XOAY LEVEL BLOCK VÀ PLAYER CÙNG LÚC ===
         Quaternion start = levelBlock.rotation;
         Quaternion end = start * Quaternion.AngleAxis(angle, rotationAxis);
 
@@ -53,11 +75,47 @@ public class RotateBlock : MonoBehaviour
         while (t < 1f)
         {
             t += Time.deltaTime / duration;
-            levelBlock.rotation = Quaternion.Slerp(start, end, t);
+            
+            // Xoay levelBlock
+            Quaternion currentRotation = Quaternion.Slerp(start, end, t);
+            levelBlock.rotation = currentRotation;
+
+            // Tính toán vị trí mới của Player (xoay quanh pivot)
+            if (playerObj != null)
+            {
+                // Tính góc đã xoay so với ban đầu
+                Quaternion deltaRotation = currentRotation * Quaternion.Inverse(start);
+                
+                // Xoay offset của player quanh pivot
+                Vector3 rotatedOffset = deltaRotation * playerStartOffset;
+                
+                // Cập nhật vị trí player
+                playerObj.transform.position = pivot + rotatedOffset;
+                
+                // QUAN TRỌNG: Giữ player luôn đứng thẳng
+                playerObj.transform.rotation = Quaternion.identity;
+            }
+
             yield return null;
         }
 
+        // Đảm bảo rotation cuối cùng chính xác
         levelBlock.rotation = end;
+
+        if (playerObj != null)
+        {
+            // Vị trí cuối cùng
+            Quaternion finalDelta = end * Quaternion.Inverse(start);
+            playerObj.transform.position = pivot + (finalDelta * playerStartOffset);
+            playerObj.transform.rotation = Quaternion.identity;
+
+            // === KHÔI PHỤC PHYSICS ===
+            if (playerRb != null)
+            {
+                playerRb.simulated = true;
+            }
+        }
+
         rotating = false;
     }
     
