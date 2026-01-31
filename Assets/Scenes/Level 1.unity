@@ -290,6 +290,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GamePlayUI
       objectReference: {fileID: 0}
+    - target: {fileID: 5215259402560279649, guid: 1f18da93e2c60a74dadb45b862adcde4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 14.918213
+      objectReference: {fileID: 0}
     - target: {fileID: 5567757986174312981, guid: 1f18da93e2c60a74dadb45b862adcde4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1840,9 +1844,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'How can we pass this way
-
-    Try pressing E to use Red Mask'
+  m_text: "We pass this way by pressing E \nto use the Red Mask"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2ba76f749e4ab142afda516a1d0a923, type: 2}
   m_sharedMaterial: {fileID: 7668329617677098194, guid: d2ba76f749e4ab142afda516a1d0a923, type: 2}
