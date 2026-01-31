@@ -27,6 +27,11 @@ public class GameplayUI : MonoBehaviour
     [SerializeField] private Button retryButton;
     [SerializeField] private Button loseMainMenuButton;
 
+    [Header("Mask")]
+    [SerializeField] private Image blue;
+    [SerializeField] private Image red;
+
+
     [Header("Input")]
     [SerializeField] private KeyCode pauseKey = KeyCode.Escape;
 
@@ -38,6 +43,31 @@ public class GameplayUI : MonoBehaviour
         SetupButtonListeners();
         LoadSettings();
         HideAllPanels();
+
+        MaskManager.Instance.onMaskChanged += (type) =>
+        {
+            switch (type)
+            {
+                case MaskType.Blue:
+                    blue.color = new Color(1, 1, 1, 1);
+                    red.color = new Color(1, 1, 1, 0.1f);
+                    blue.GetComponent<RectTransform>().localScale = Vector3.one;
+                    red.GetComponent<RectTransform>().localScale = Vector3.one * 0.75f;
+                    break;
+                case MaskType.Red:
+                    red.color = new Color(1, 1, 1, 1);
+                    blue.color = new Color(1, 1, 1, 0.1f);
+                    blue.GetComponent<RectTransform>().localScale = Vector3.one * 0.75f;
+                    red.GetComponent<RectTransform>().localScale = Vector3.one;
+                    break;
+                default:
+                    red.color = new Color(1, 1, 1, 0.1f);
+                    blue.color = new Color(1, 1, 1, 0.1f);
+                    blue.GetComponent<RectTransform>().localScale = Vector3.one * 0.75f;
+                    red.GetComponent<RectTransform>().localScale = Vector3.one * 0.75f;
+                    break;
+            }
+        };
     }
 
     private void Update()
