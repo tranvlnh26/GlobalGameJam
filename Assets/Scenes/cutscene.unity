@@ -178,12 +178,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: " \tI am a scientist, and my greatest mistake began with what seemed like
-    a harmless measurement.\n While testing a multidimensional observation device,
-    I discovered a spatial rift\u2014a point where the two parallel worlds, Blue
-    and Red, overlap imperfectly. At first, it was nothing more than data noise:
-    blocks of matter appearing and disappearing. But very quickly, I realized the
-    terrifying truth\u2014the two worlds were beginning to merge into one.\r\n"
+  m_text: "While testing a multidimensional device, I discovered a rift between the
+    Blue and Red worlds\u2014proof they were starting to merge."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2ba76f749e4ab142afda516a1d0a923, type: 2}
   m_sharedMaterial: {fileID: 7668329617677098194, guid: d2ba76f749e4ab142afda516a1d0a923, type: 2}
@@ -972,15 +968,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\tMy mission is to venture deep into the overlap zone, where blocks of
-    matter are phase-shifted between the two worlds. Some platforms exist only in
-    Blue, yet to reach them I am forced to pass through Red. Every movement demands
-    that I switch masks at precisely the right moment; a single mistake could trap
-    me between two realities\u2014where no matter exists at all.\nThe closer I get
-    to the core of the rift, the more unstable the two worlds become. The puzzles
-    are no longer tests of intellect, but trials of my ability to keep the two realities
-    from collapsing into one another. I must reactivate the anchor points, each of
-    which can only be accessed from a specific world."
+  m_text: "To reach the rift\u2019s center, I must navigate zones where platforms
+    appear in only one world, switching masks with perfect timing or risk falling
+    into nothingness."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2ba76f749e4ab142afda516a1d0a923, type: 2}
   m_sharedMaterial: {fileID: 7668329617677098194, guid: d2ba76f749e4ab142afda516a1d0a923, type: 2}
@@ -1195,8 +1185,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 602.5, y: 138}
-  m_SizeDelta: {x: 1146.7253, y: 230.2796}
+  m_AnchoredPosition: {x: 631.0366, y: 138}
+  m_SizeDelta: {x: 1203.7986, y: 230.2796}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!320 &1669263232
 PlayableDirector:
@@ -1257,10 +1247,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\tI created two reality-stabilizing devices, encoded as the Blue Mask
-    and the Red Mask. Each mask allows me to exist in a separate world, at the same
-    spatial coordinates. I cannot be in both at the same time\u2014and if the rift
-    fully expands, this rule will collapse.\r\n"
+  m_text: I built two stabilizing masks, Blue and Red, each letting me exist in one
+    world only. If the rift grows, this limit will break.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2ba76f749e4ab142afda516a1d0a923, type: 2}
   m_sharedMaterial: {fileID: 7668329617677098194, guid: d2ba76f749e4ab142afda516a1d0a923, type: 2}
