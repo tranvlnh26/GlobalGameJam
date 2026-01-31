@@ -1553,8 +1553,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7.29, y: 0.4}
-  m_SizeDelta: {x: 20, y: 5}
+  m_AnchoredPosition: {x: -8.9068, y: 0.4}
+  m_SizeDelta: {x: 23.2337, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1604234646
 MonoBehaviour:
@@ -1603,7 +1603,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -1.0845127, y: -1.3582273}
+  m_Offset: {x: -0.3495803, y: -1.3582273}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1613,7 +1613,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 17.80054, y: 7.4667606}
+  m_Size: {x: 19.270405, y: 7.4667606}
   m_EdgeRadius: 0
 --- !u!114 &1604234648
 MonoBehaviour:
@@ -1635,7 +1635,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Use left arrow button and right arrow button to move and space to jump
+  m_text: "Use \u2192 & \u2190 to move\r\nUse SPACE to jump"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2ba76f749e4ab142afda516a1d0a923, type: 2}
   m_sharedMaterial: {fileID: 7668329617677098194, guid: d2ba76f749e4ab142afda516a1d0a923, type: 2}
@@ -1701,7 +1701,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 8.584009, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0
