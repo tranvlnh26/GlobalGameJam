@@ -3,7 +3,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Movement Settings")]
-    [SerializeField] public static float moveSpeed = 8f;
+    [SerializeField] public static float MoveSpeed = 8f;
+    [SerializeField] public float moveSpeed = 8f;
     [SerializeField] private float jumpForce = 20f;
     [SerializeField] private float jumpCutMultiplier = 0.4f;
 
@@ -41,6 +42,7 @@ public class Player : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         animation = GetComponent<Animator>();
+        MoveSpeed = moveSpeed;
     }
 
     void Update()
