@@ -8,6 +8,7 @@ public class RotateBlock : MonoBehaviour
     public Vector3 rotationAxis = Vector3.forward;
     public float duration = 2f;
     public KeyCode rotateKey = KeyCode.R;
+    public GameObject button;
 
     bool canInteract;
     bool rotating;
@@ -54,4 +55,13 @@ public class RotateBlock : MonoBehaviour
         levelBlock.rotation = end;
         rotating = false;
     }
+    
+    // IEnumerator Animate()
+    // {
+    //     var target = 10;
+    //     while (button.transform.localScale.z != target)
+    //     {
+    //         
+    //     }
+    // }
 }

@@ -20,7 +20,7 @@ public class SpringBlock : MonoBehaviour
 
     private Vector3 _originalSpringScale;
     private Vector3 _originalCubePos;
-    private bool _isAnimating = false;
+    private bool _isAnimating;
 
     void Start()
     {
