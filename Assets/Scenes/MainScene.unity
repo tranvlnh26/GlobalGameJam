@@ -684,7 +684,7 @@ MonoBehaviour:
   musicVolumeSlider: {fileID: 1268990760}
   sfxVolumeSlider: {fileID: 2038058122}
   fullscreenToggle: {fileID: 1973948549}
-  firstLevel: 4
+  firstLevel: 6
 --- !u!1 &942043544
 GameObject:
   m_ObjectHideFlags: 0

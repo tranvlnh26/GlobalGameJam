@@ -1389,11 +1389,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6025042882715309605, guid: 9126e0083e5e0ac4eb310561fb204d23, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 101.7
+      value: 95.4
       objectReference: {fileID: 0}
     - target: {fileID: 6025042882715309605, guid: 9126e0083e5e0ac4eb310561fb204d23, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.899999
+      value: -5.6999984
       objectReference: {fileID: 0}
     - target: {fileID: 6025042882715309605, guid: 9126e0083e5e0ac4eb310561fb204d23, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1774,6 +1774,7 @@ MonoBehaviour:
   voidYThreshold: -70
   coyoteTime: 0.15
   jumpBufferTime: 0.15
+  footstepInterval: 0.35
   gameplayUI: {fileID: 0}
 --- !u!95 &1510906265
 Animator:
@@ -1893,11 +1894,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7395087706283567529, guid: ba4cb93a621e3574287bdcc797219e4c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 95.49999
+      value: 89.2
       objectReference: {fileID: 0}
     - target: {fileID: 7395087706283567529, guid: ba4cb93a621e3574287bdcc797219e4c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.99999905
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7395087706283567529, guid: ba4cb93a621e3574287bdcc797219e4c, type: 3}
       propertyPath: m_LocalPosition.z
