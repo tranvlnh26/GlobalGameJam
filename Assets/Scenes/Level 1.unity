@@ -1492,6 +1492,7 @@ MonoBehaviour:
   voidYThreshold: -40
   coyoteTime: 0.15
   jumpBufferTime: 0.15
+  footstepInterval: 0.35
   gameplayUI: {fileID: 0}
 --- !u!95 &1510906265
 Animator:
@@ -1683,7 +1684,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7728676236675000918, guid: 9126e0083e5e0ac4eb310561fb204d23, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

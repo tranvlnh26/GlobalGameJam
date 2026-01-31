@@ -1454,6 +1454,7 @@ MonoBehaviour:
   voidYThreshold: -40
   coyoteTime: 0.15
   jumpBufferTime: 0.15
+  footstepInterval: 0.35
   gameplayUI: {fileID: 0}
 --- !u!95 &1510906265
 Animator:
