@@ -305,20 +305,12 @@ MonoBehaviour:
   sfxSource: {fileID: 0}
   menuMusic: {fileID: 0}
   gameMusic: {fileID: 8300000, guid: b827629ad902b504097801f0e6ef842e, type: 3}
-  jumpSFX: {fileID: 0}
-  deathSFX: {fileID: 0}
-  maskchangeSFX: {fileID: 8300000, guid: 9c5b6db0e148d2d4f88a8ff730210efe, type: 3}
   footstepSFX:
   - {fileID: 8300000, guid: 70b30fcfa2e921e4f977540971625441, type: 3}
   - {fileID: 8300000, guid: 952c046697988f54982741662239d329, type: 3}
   - {fileID: 8300000, guid: ac73102dfd25c65448fb4947ce575063, type: 3}
   - {fileID: 8300000, guid: 6f170569d3064134181abf48b84def4f, type: 3}
   - {fileID: 8300000, guid: 7502cda7e49d93748bf0cdf0006dcb65, type: 3}
-  portalSFX: {fileID: 0}
-  RBinteractSFX: {fileID: 8300000, guid: 6a73d389ee7ed774bb0159e9762f776f, type: 3}
-  FBinteractSFX: {fileID: 8300000, guid: d399574a06ddd8245b759af0055a7b59, type: 3}
-  SpringSFX: {fileID: 8300000, guid: d3d96d4bc3f7a124c9a112469fd27df6, type: 3}
-  ElevatorSFX: {fileID: 8300000, guid: 31b4dd59248b4e745b4717b17b9f4076, type: 3}
 --- !u!4 &486802871
 Transform:
   m_ObjectHideFlags: 0

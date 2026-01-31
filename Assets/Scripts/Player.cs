@@ -164,8 +164,6 @@ public class Player : MonoBehaviour
 
         _jumpBufferCounter = 0f;
         _coyoteTimeCounter = 0f;
-        
-        
     }
 
     private void maskchange()
@@ -187,8 +185,6 @@ public class Player : MonoBehaviour
         _rb.linearVelocity = Vector2.zero;
         _rb.simulated = false;
 
-        // Phát SFX chết
-        AudioManager.Instance?.PlayDeath();
         animation.SetBool("death", true);
         // Hiển thị Lose screen
         await Awaitable.WaitForSecondsAsync(1.385f);

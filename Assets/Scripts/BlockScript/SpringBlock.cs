@@ -43,7 +43,6 @@ public class SpringBlock : MonoBehaviour
         // Chạy hiệu ứng
         if (!_isAnimating)
         {
-            AudioManager.Instance.PlaySpring();
             await PlaySpringEffectAsync();
         }
     }

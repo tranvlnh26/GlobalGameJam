@@ -29,9 +29,8 @@ public class WaypointMover : MonoBehaviour
         Transform targetWaypoint = _waypoints[_currentPointIndex];
 
         // 3. Di chuyển từ vị trí hiện tại đến target
-        // Vector3.MoveTowards(Vị trí hiện tại, Đích đến, Quãng đường đi được trong 1 frame)
         transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, _speed * Time.deltaTime);
-        AudioManager.Instance.PlayElevator();
+        
         // 4. Kiểm tra xem đã đến nơi chưa (Khoảng cách < 0.1f)
         if (Vector3.Distance(transform.position, targetWaypoint.position) < 0.1f)
         {
