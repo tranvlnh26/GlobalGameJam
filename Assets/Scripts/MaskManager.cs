@@ -16,6 +16,8 @@ public class MaskManager : MonoBehaviour
     private int _layerBlue;
     public MaskType currentMask;
 
+    public event Action<MaskType> onMaskChanged;
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -64,7 +66,7 @@ public class MaskManager : MonoBehaviour
 
         // 2. PHYSICS: Ignore Collision
         UpdatePhysicsCollision(type);
-        
+        onMaskChanged?.Invoke(type);
         // 3. TRIGGER VFX (Glitch)
         // if (VFXManager.Instance != null) 
         // {

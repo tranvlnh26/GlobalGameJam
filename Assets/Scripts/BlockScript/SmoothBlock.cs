@@ -8,13 +8,13 @@ public class SmoothBlock : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         Player.onSmoothBlock = true;
-        Player.moveSpeed = slideSpeed;
+        Player.MoveSpeed = slideSpeed;
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
         Player.onSmoothBlock = false;
-        Player.moveSpeed = 4f;
+        Player.MoveSpeed = 8f;
     }
 }
