@@ -951,6 +951,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 367645593}
   m_CullTransparentMesh: 1
+--- !u!4 &394468682 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7395087706283567529, guid: ba4cb93a621e3574287bdcc797219e4c, type: 3}
+  m_PrefabInstance: {fileID: 3592801708605345421}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &415566652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1749,6 +1754,14 @@ PrefabInstance:
       propertyPath: maxForce
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 4712365448692591381, guid: 20fce22d8d6d64048abd58fc5bc6bca8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463273999651587158, guid: 20fce22d8d6d64048abd58fc5bc6bca8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1968,7 +1981,7 @@ Transform:
   m_GameObject: {fileID: 757920786}
   serializedVersion: 2
   m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: -7.37, y: 7.8822846, z: -14.488888}
+  m_LocalPosition: {x: -7.37, y: 10.470474, z: -24.148146}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2827,7 +2840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886251e9a18ece04ea8e61686c173e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachinePositionComposer
-  CameraDistance: 15
+  CameraDistance: 25
   DeadZoneDepth: 0
   Composition:
     ScreenPosition: {x: 0, y: 0}
@@ -2898,7 +2911,7 @@ Transform:
   m_GameObject: {fileID: 1090521180}
   serializedVersion: 2
   m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: -7.37, y: 7.8822846, z: -14.488888}
+  m_LocalPosition: {x: -7.37, y: 10.470474, z: -24.148146}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3802,6 +3815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff298d5ed5028144b0224d814078611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  moveSpeed: 8
   jumpForce: 10
   jumpCutMultiplier: 0.4
   normalAcceleration: 60
@@ -4492,7 +4506,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: YOU DIE
+  m_text: YOU DIED
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4558,7 +4572,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -31.688171, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4784,7 +4798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: e1713678877c0494c9b633d88928204a, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -5034,6 +5048,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 394468682}
   - {fileID: 1424128495}
   - {fileID: 1898098126}
   - {fileID: 1848408038}
@@ -5333,6 +5348,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2126922208}
   m_CullTransparentMesh: 1
+--- !u!1001 &3592801708605345421
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2037669019}
+    m_Modifications:
+    - target: {fileID: 1276317073424529677, guid: ba4cb93a621e3574287bdcc797219e4c, type: 3}
+      propertyPath: m_Name
+      value: Portal
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395087706283567529, guid: ba4cb93a621e3574287bdcc797219e4c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395087706283567529, guid: ba4cb93a621e3574287bdcc797219e4c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395087706283567529, guid: ba4cb93a621e3574287bdcc797219e4c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395087706283567529, guid: ba4cb93a621e3574287bdcc797219e4c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395087706283567529, guid: ba4cb93a621e3574287bdcc797219e4c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395087706283567529, guid: ba4cb93a621e3574287bdcc797219e4c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395087706283567529, guid: ba4cb93a621e3574287bdcc797219e4c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395087706283567529, guid: ba4cb93a621e3574287bdcc797219e4c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395087706283567529, guid: ba4cb93a621e3574287bdcc797219e4c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395087706283567529, guid: ba4cb93a621e3574287bdcc797219e4c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ba4cb93a621e3574287bdcc797219e4c, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
