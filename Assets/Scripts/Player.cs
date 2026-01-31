@@ -17,9 +17,15 @@ public class Player : MonoBehaviour
     [SerializeField] private float groundCheckRadius = 0.25f;
     [SerializeField] private LayerMask baseGroundMask;
 
+    [Header("Void Detection")]
+    [SerializeField] private float voidYThreshold = -10f;
+
     [Header("Game Feel (Timers)")]
     [SerializeField] private float coyoteTime = 0.15f;
     [SerializeField] private float jumpBufferTime = 0.15f;
+
+    [Header("References")]
+    [SerializeField] private GameplayUI gameplayUI;
 
     private Rigidbody2D _rb;
     private float _inputX;
@@ -27,6 +33,7 @@ public class Player : MonoBehaviour
     private float _jumpBufferCounter;
     private bool _isGrounded;
     private bool _isFacingRight = true;
+    private bool _isDead = false;
 
     void Start()
     {
@@ -35,6 +42,15 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (_isDead) return;
+
+        // Kiểm tra rơi vào void
+        if (transform.position.y < voidYThreshold)
+        {
+            Die();
+            return;
+        }
+
         _inputX = Input.GetAxisRaw("Horizontal");
 
         HandleGroundCheck();
@@ -63,6 +79,8 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (_isDead) return;
+
         float targetX = _inputX * moveSpeed;
 
         float accel = onSmoothBlock ? slideAcceleration : normalAcceleration;
@@ -133,5 +151,30 @@ public class Player : MonoBehaviour
         localScale.x *= -1f;
         transform.localScale = localScale;
     }
-    
+
+    /// <summary>
+    /// Xử lý khi player chết (rơi vào void).
+    /// </summary>
+    public void Die()
+    {
+        if (_isDead) return;
+
+        _isDead = true;
+        _rb.linearVelocity = Vector2.zero;
+        _rb.simulated = false;
+
+        // Phát SFX chết
+        AudioManager.Instance?.PlayDeath();
+
+        // Hiển thị Lose screen
+        if (gameplayUI != null)
+        {
+            gameplayUI.ShowLoseScreen();
+        }
+        else
+        {
+            // Fallback: tìm GameplayUI trong scene
+            FindFirstObjectByType<GameplayUI>()?.ShowLoseScreen();
+        }
+    }
 }
