@@ -146,17 +146,6 @@ public class Player : MonoBehaviour
         else if (Input.GetKey(KeyCode.E) && MaskManager.Instance.currentMask != MaskType.Red)
             MaskManager.Instance.ApplyMask(MaskType.Red);
     }
-<<<<<<< Updated upstream
-    private void Flip()
-    {
-        if ((!_isFacingRight || !(_inputX < 0f)) && (_isFacingRight || !(_inputX > 0f)))
-            return;
-
-        _isFacingRight = !_isFacingRight;
-        var localScale = transform.localScale;
-        localScale.x *= -1f;
-        transform.localScale = localScale;
-    }
 
     /// <summary>
     /// Xử lý khi player chết (rơi vào void).
@@ -183,6 +172,4 @@ public class Player : MonoBehaviour
             FindFirstObjectByType<GameplayUI>()?.ShowLoseScreen();
         }
     }
-=======
->>>>>>> Stashed changes
 }
