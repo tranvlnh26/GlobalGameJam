@@ -4,7 +4,7 @@ public class Player : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] public static float moveSpeed = 6f;
-    [SerializeField] private float jumpForce = 14f;
+    [SerializeField] private float jumpForce = 20f;
     [SerializeField] private float jumpCutMultiplier = 0.4f;
 
     [Header("Slide Settings")]
@@ -35,9 +35,12 @@ public class Player : MonoBehaviour
     private bool _isFacingRight = true;
     private bool _isDead = false;
 
+    private Animator animation;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        animation = GetComponent<Animator>();
     }
 
     void Update()
@@ -60,20 +63,22 @@ public class Player : MonoBehaviour
         {
             _jumpBufferCounter = jumpBufferTime;
         }
-
         if (Input.GetKeyUp(KeyCode.Space) && _rb.linearVelocity.y > 0)
         {
+   
             _rb.linearVelocity = new Vector2(
                 _rb.linearVelocity.x,
                 _rb.linearVelocity.y * jumpCutMultiplier
             );
             _coyoteTimeCounter = 0f;
         }
+        
 
         if (_jumpBufferCounter > 0f && _coyoteTimeCounter > 0f)
         {
             PerformJump();
         }
+
         maskchange();
     }
 
@@ -82,7 +87,6 @@ public class Player : MonoBehaviour
         if (_isDead) return;
 
         float targetX = _inputX * moveSpeed;
-
         float accel = onSmoothBlock ? slideAcceleration : normalAcceleration;
 
         _rb.linearVelocity = new Vector2(
@@ -93,8 +97,10 @@ public class Player : MonoBehaviour
             ),
             _rb.linearVelocity.y
         );
-        
-        Flip();
+        // ===== ANIMATION =====
+        animation.SetFloat("horizontal", _inputX);
+        animation.SetFloat("speed", targetX);
+        animation.SetBool("jump", _isGrounded);
     }
 
     private void HandleGroundCheck()
@@ -129,18 +135,18 @@ public class Player : MonoBehaviour
 
         _jumpBufferCounter = 0f;
         _coyoteTimeCounter = 0f;
+        
+        
     }
+
     private void maskchange()
     {
         if (Input.GetKey(KeyCode.Q) && MaskManager.Instance.currentMask != MaskType.Blue)
-        {
             MaskManager.Instance.ApplyMask(MaskType.Blue);
-        }
         else if (Input.GetKey(KeyCode.E) && MaskManager.Instance.currentMask != MaskType.Red)
-        {
             MaskManager.Instance.ApplyMask(MaskType.Red);
-        }
     }
+<<<<<<< Updated upstream
     private void Flip()
     {
         if ((!_isFacingRight || !(_inputX < 0f)) && (_isFacingRight || !(_inputX > 0f)))
@@ -177,4 +183,6 @@ public class Player : MonoBehaviour
             FindFirstObjectByType<GameplayUI>()?.ShowLoseScreen();
         }
     }
+=======
+>>>>>>> Stashed changes
 }
