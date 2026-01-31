@@ -290,11 +290,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: GamePlayUI
       objectReference: {fileID: 0}
+    - target: {fileID: 3631592063064611544, guid: 1f18da93e2c60a74dadb45b862adcde4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 14.91803
+      objectReference: {fileID: 0}
+    - target: {fileID: 4522009503773325735, guid: 1f18da93e2c60a74dadb45b862adcde4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5567757986174312981, guid: 1f18da93e2c60a74dadb45b862adcde4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5991560511613323521, guid: 1f18da93e2c60a74dadb45b862adcde4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6506503228650642350, guid: 1f18da93e2c60a74dadb45b862adcde4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -1875,6 +1887,7 @@ MonoBehaviour:
   voidYThreshold: -70
   coyoteTime: 0.15
   jumpBufferTime: 0.15
+  footstepInterval: 0.43
   gameplayUI: {fileID: 0}
 --- !u!95 &1510906265
 Animator:
@@ -1921,11 +1934,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7395087706283567529, guid: ba4cb93a621e3574287bdcc797219e4c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.84
+      value: -8.86
       objectReference: {fileID: 0}
     - target: {fileID: 7395087706283567529, guid: ba4cb93a621e3574287bdcc797219e4c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -37.67
+      value: -35.96
       objectReference: {fileID: 0}
     - target: {fileID: 7395087706283567529, guid: ba4cb93a621e3574287bdcc797219e4c, type: 3}
       propertyPath: m_LocalPosition.z

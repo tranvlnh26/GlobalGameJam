@@ -303,7 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   musicSource: {fileID: 0}
   sfxSource: {fileID: 0}
-  backgroundMusic: {fileID: 0}
+  backgroundMusic: {fileID: 8300000, guid: 5cc0c2d6b8cc72945a25b0e0ad864889, type: 3}
   footstepSFX:
   - {fileID: 8300000, guid: 70b30fcfa2e921e4f977540971625441, type: 3}
   - {fileID: 8300000, guid: 952c046697988f54982741662239d329, type: 3}
