@@ -25,6 +25,7 @@ public class RotateBlock : MonoBehaviour
 
         if (Input.GetKeyDown(rotateKey))
         {
+            AudioManager.Instance.PlaySFX("RotateBlock");
             StartCoroutine(RotateLevel());
             await AnimateButton();
         }

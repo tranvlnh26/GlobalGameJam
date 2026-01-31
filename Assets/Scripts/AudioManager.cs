@@ -20,9 +20,11 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] private AudioClip deathSFX;
     [SerializeField] private AudioClip maskRedSFX;      // "Gầm" trầm khi bật Mask Đỏ
     [SerializeField] private AudioClip maskBlueSFX;     // "Ping" cao khi bật Mask Xanh
-    [SerializeField] private AudioClip maskOffSFX;      // Tắt mask
+    //[SerializeField] private AudioClip maskOffSFX;      // Tắt mask
     [SerializeField] private AudioClip footstepSFX;     // Tiếng bước chân kim loại
     [SerializeField] private AudioClip portalSFX;       // Hoàn thành màn
+    [SerializeField] private AudioClip RBinteractSFX; // tương tác với khối RB4
+    [SerializeField] private AudioClip FBinteractSFX; // tương tác với khối FB
 
     [Header("Volume Settings")]
     [Range(0f, 1f)] private float musicVolume = 1f;
@@ -64,7 +66,8 @@ public class AudioManager : Singleton<AudioManager>
             { "Death", deathSFX },
             { "MaskRed", maskRedSFX },
             { "MaskBlue", maskBlueSFX },
-            { "MaskOff", maskOffSFX },
+            { "RotateBlock", RBinteractSFX },
+            { "FallBlock", FBinteractSFX },
             { "Footstep", footstepSFX },
             { "Portal", portalSFX }
         };
@@ -142,7 +145,8 @@ public class AudioManager : Singleton<AudioManager>
     public void PlayDeath() => PlaySFX(deathSFX);
     public void PlayMaskRed() => PlaySFX(maskRedSFX);
     public void PlayMaskBlue() => PlaySFX(maskBlueSFX);
-    public void PlayMaskOff() => PlaySFX(maskOffSFX);
+    public void PLayRotateBlock() => PlaySFX(RBinteractSFX);
+    public void PlayFallBlock() => PlaySFX(FBinteractSFX);
     public void PlayFootstep() => PlaySFX(footstepSFX);
     public void PlayPortal() => PlaySFX(portalSFX);
 

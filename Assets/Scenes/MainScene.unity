@@ -309,9 +309,10 @@ MonoBehaviour:
   deathSFX: {fileID: 0}
   maskRedSFX: {fileID: 0}
   maskBlueSFX: {fileID: 0}
-  maskOffSFX: {fileID: 0}
-  footstepSFX: {fileID: 0}
+  footstepSFX: {fileID: 8300000, guid: 6867e214e2f0526488744fab52609ec2, type: 3}
   portalSFX: {fileID: 0}
+  RBinteractSFX: {fileID: 8300000, guid: f3fe09378478f064aa9f8c85ced6b21a, type: 3}
+  FBinteractSFX: {fileID: 0}
 --- !u!4 &486802871
 Transform:
   m_ObjectHideFlags: 0
@@ -683,7 +684,7 @@ MonoBehaviour:
   musicVolumeSlider: {fileID: 1268990760}
   sfxVolumeSlider: {fileID: 2038058122}
   fullscreenToggle: {fileID: 1973948549}
-  firstLevel: 1
+  firstLevel: 4
 --- !u!1 &942043544
 GameObject:
   m_ObjectHideFlags: 0
