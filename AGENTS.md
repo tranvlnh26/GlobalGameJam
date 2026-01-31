@@ -2,7 +2,7 @@
 - Project name: GlobalGameJam
 - Unity version: Unity 6000.3.3f1
 - Active game object:
-  - Name: Button
+  - Name: Portal
   - Tag: Untagged
-  - Layer: BaseWorld
+  - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
