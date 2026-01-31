@@ -46,8 +46,10 @@ public class MaskManager : MonoBehaviour
         if (mainCam == null) return;
         currentMask = type;
         // 1. VISUAL: Camera Culling Mask
+        AudioManager.Instance.PlayMask();
         switch (type)
         {
+
             case MaskType.None:
                 // Chỉ thấy Base, không thấy Red/Blue
                 mainCam.cullingMask = _maskDefault;

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEditor.Rendering.Universal;
 
 /// <summary>
 /// Quản lý âm thanh cho game True Sight.
@@ -18,14 +19,14 @@ public class AudioManager : Singleton<AudioManager>
     [Header("SFX Clips")]
     [SerializeField] private AudioClip jumpSFX;
     [SerializeField] private AudioClip deathSFX;
-    [SerializeField] private AudioClip maskRedSFX;      // "Gầm" trầm khi bật Mask Đỏ
-    [SerializeField] private AudioClip maskBlueSFX;     // "Ping" cao khi bật Mask Xanh
+    [SerializeField] private AudioClip maskchangeSFX;
     //[SerializeField] private AudioClip maskOffSFX;      // Tắt mask
-    [SerializeField] private AudioClip footstepSFX;     // Tiếng bước chân kim loại
+    [SerializeField] private AudioClip[] footstepSFX;     // Tiếng bước chân kim loại
     [SerializeField] private AudioClip portalSFX;       // Hoàn thành màn
     [SerializeField] private AudioClip RBinteractSFX; // tương tác với khối RB4
-    [SerializeField] private AudioClip FBinteractSFX; // tương tác với khối FB
-
+    [SerializeField] private AudioClip FBinteractSFX; // tương tác với khối 
+    [SerializeField] private AudioClip SpringSFX;
+    [SerializeField] private AudioClip ElevatorSFX;
     [Header("Volume Settings")]
     [Range(0f, 1f)] private float musicVolume = 1f;
     [Range(0f, 1f)] private float sfxVolume = 1f;
@@ -64,11 +65,8 @@ public class AudioManager : Singleton<AudioManager>
         {
             { "Jump", jumpSFX },
             { "Death", deathSFX },
-            { "MaskRed", maskRedSFX },
-            { "MaskBlue", maskBlueSFX },
             { "RotateBlock", RBinteractSFX },
             { "FallBlock", FBinteractSFX },
-            { "Footstep", footstepSFX },
             { "Portal", portalSFX }
         };
     }
@@ -124,9 +122,11 @@ public class AudioManager : Singleton<AudioManager>
 
     public void PlaySFX(AudioClip clip)
     {
+        
         if (clip == null || sfxSource == null) return;
         sfxSource.PlayOneShot(clip, sfxVolume);
     }
+
 
     public void PlaySFX(string sfxName)
     {
@@ -141,15 +141,21 @@ public class AudioManager : Singleton<AudioManager>
     }
 
     // Convenience methods cho các SFX thường dùng
+    public void PlayFootstep()
+    {
+        if (footstepSFX == null) return;
+        var index = Random.Range(0, footstepSFX.Length);
+        PlaySFX(footstepSFX[index]);
+        
+    }
     public void PlayJump() => PlaySFX(jumpSFX);
     public void PlayDeath() => PlaySFX(deathSFX);
-    public void PlayMaskRed() => PlaySFX(maskRedSFX);
-    public void PlayMaskBlue() => PlaySFX(maskBlueSFX);
+    public void PlayMask() => PlaySFX(maskchangeSFX);
     public void PLayRotateBlock() => PlaySFX(RBinteractSFX);
     public void PlayFallBlock() => PlaySFX(FBinteractSFX);
-    public void PlayFootstep() => PlaySFX(footstepSFX);
     public void PlayPortal() => PlaySFX(portalSFX);
-
+    public void PlaySpring() => PlaySFX(SpringSFX);
+    public void PlayElevator() => PlaySFX(ElevatorSFX);
     #endregion
 
     #region Volume Control

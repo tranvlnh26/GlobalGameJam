@@ -30,6 +30,7 @@ public class SpringBlock : MonoBehaviour
 
     async void OnTriggerEnter2D(Collider2D other)
     {
+        
         if (!other.CompareTag("Player")) return;
 
         var rb = other.GetComponent<Rigidbody2D>();
@@ -42,6 +43,7 @@ public class SpringBlock : MonoBehaviour
         // Chạy hiệu ứng
         if (!_isAnimating)
         {
+            AudioManager.Instance.PlaySpring();
             await PlaySpringEffectAsync();
         }
     }

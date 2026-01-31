@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpBufferTime = 0.15f;
 
     [Header("Footstep Settings")]
-    [SerializeField] private float footstepInterval = 0.35f; // Thời gian giữa các bước chân
+    [SerializeField] private float footstepInterval = 0.43f; // Thời gian giữa các bước chân
 
     [Header("References")]
     [SerializeField] private GameplayUI gameplayUI;
