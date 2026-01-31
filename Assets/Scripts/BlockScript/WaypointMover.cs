@@ -7,10 +7,10 @@ public class WaypointMover : MonoBehaviour
     [SerializeField] private Transform[] _waypoints; // Kéo các Point A, B, C vào đây
     [SerializeField] private float _speed = 5f;      // Tốc độ di chuyển
     [SerializeField] private float _waitAtPoint = 0f;// Thời gian nghỉ tại mỗi điểm
+    public bool _isActive;
     
     private int _currentPointIndex = 0;
     private float _waitTimer = 0f;
-    private bool _isActive;
 
     private void OnCollisionEnter2D(Collision2D other)
     {
