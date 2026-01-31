@@ -84,16 +84,25 @@ public class DelayedTrapBlock : MonoBehaviour
 
 
             // --- GIAI ĐOẠN 2: SẬP XUỐNG (FALL) ---
-            while (Vector3.Distance(_rb.position, _targetPos) > 0.01f)
+            while (Vector2.Distance(_rb.position, _targetPos) > 0.01f)
             {
                 token.ThrowIfCancellationRequested();
 
-                Vector2 newPos = Vector2.MoveTowards(_rb.position, _targetPos, fallSpeed * Time.fixedDeltaTime);
-                _rb.MovePosition(newPos);
-
                 await Awaitable.FixedUpdateAsync(token);
+
+                Vector2 newPos = Vector2.MoveTowards(
+                    _rb.position,
+                    _targetPos,
+                    fallSpeed * Time.fixedDeltaTime
+                );
+
+                _rb.MovePosition(newPos);
             }
+
+            // snap cuối
+            await Awaitable.FixedUpdateAsync(token);
             _rb.MovePosition(_targetPos);
+
 
 
             // --- GIAI ĐOẠN 3: NẰM CHỜ (STAY) ---

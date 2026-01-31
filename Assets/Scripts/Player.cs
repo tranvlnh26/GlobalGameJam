@@ -3,7 +3,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Movement Settings")]
-    [SerializeField] public static float moveSpeed = 6f;
+    [SerializeField] public static float moveSpeed = 8f;
     [SerializeField] private float jumpForce = 20f;
     [SerializeField] private float jumpCutMultiplier = 0.4f;
 
@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask baseGroundMask;
 
     [Header("Void Detection")]
-    [SerializeField] private float voidYThreshold = -10f;
+    [SerializeField] private float voidYThreshold = -5f;
 
     [Header("Game Feel (Timers)")]
     [SerializeField] private float coyoteTime = 0.15f;
@@ -46,9 +46,8 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (_isDead) return;
-
-        // Kiểm tra rơi vào void
-        if (transform.position.y < voidYThreshold)
+            // Kiểm tra rơi vào void
+            if (transform.position.y < voidYThreshold)
         {
             Die();
             return;
@@ -150,7 +149,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// Xử lý khi player chết (rơi vào void).
     /// </summary>
-    public void Die()
+    public async void Die()
     {
         if (_isDead) return;
 
@@ -160,16 +159,21 @@ public class Player : MonoBehaviour
 
         // Phát SFX chết
         AudioManager.Instance?.PlayDeath();
-
+        animation.SetBool("death", true);
         // Hiển thị Lose screen
+        await Awaitable.WaitForSecondsAsync(1.385f);
         if (gameplayUI != null)
         {
             gameplayUI.ShowLoseScreen();
         }
+        
         else
         {
             // Fallback: tìm GameplayUI trong scene
+            
             FindFirstObjectByType<GameplayUI>()?.ShowLoseScreen();
+
         }
+        animation.SetBool("death", false); 
     }
 }

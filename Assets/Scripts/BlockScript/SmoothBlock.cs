@@ -15,6 +15,6 @@ public class SmoothBlock : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         Player.onSmoothBlock = false;
-        Player.moveSpeed = 4f;
+        Player.moveSpeed = 8f;
     }
 }
