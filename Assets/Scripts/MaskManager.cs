@@ -66,7 +66,7 @@ public class MaskManager : MonoBehaviour
 
         // 2. PHYSICS: Ignore Collision
         UpdatePhysicsCollision(type);
-        onMaskChanged.Invoke(type);
+        onMaskChanged?.Invoke(type);
         // 3. TRIGGER VFX (Glitch)
         // if (VFXManager.Instance != null) 
         // {
