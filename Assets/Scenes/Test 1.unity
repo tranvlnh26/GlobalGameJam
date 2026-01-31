@@ -4740,6 +4740,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spring Block
       objectReference: {fileID: 0}
+    - target: {fileID: 3016723849401171111, guid: 20fce22d8d6d64048abd58fc5bc6bca8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3939157858545833221, guid: 20fce22d8d6d64048abd58fc5bc6bca8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8224409046001820431, guid: 20fce22d8d6d64048abd58fc5bc6bca8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
